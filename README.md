@@ -14,8 +14,6 @@ https://github.com/yunghsianglu/ECE264Assignments/tree/master/Spring2014
 
 **Solutions to be added:**
 
-PA09-HuffmanDecoding.c
-
 PA10-StackSortAndTreeShapes.c
 
 PA11-PuzzleSolver.c
