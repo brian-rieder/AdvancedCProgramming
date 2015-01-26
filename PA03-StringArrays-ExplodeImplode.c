@@ -1,3 +1,6 @@
+// Author: Brian Rieder
+// Title: PA03-StringArrays-ExplodeImplode.c
+
 #include <string.h>
 #include "answer03.h"
 
