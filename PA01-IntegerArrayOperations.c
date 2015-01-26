@@ -1,3 +1,6 @@
+// Author: Brian Rieder
+// Title: PA01-IntegerArrayOperations.c
+
 #include <stdio.h>
 #include <stdlib.h>
 
