@@ -14,8 +14,6 @@ https://github.com/yunghsianglu/ECE264Assignments/tree/master/Spring2014
 
 **Solutions to be added:**
 
-PA07-MergeSort.c
-
 PA08-RecursionInTrees.c
 
 PA09-HuffmanDecoding.c
