@@ -1,0 +1,85 @@
+// Author: Brian Rieder
+// Title: PA04-GrepLite.c
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define TRUE 1
+#define FALSE 0
+#define BUFFER_SIZE 2048
+#define EXIT_ERROR 2
+
+void printHelpMessage()
+{
+    printf("Usage: grep-lite [OPTION]... PATTERN\n"
+	   "Search for PATTERN in standard input. PATTERN is a\n"
+	   "string. grep-lite will search standard input line by\n"
+	   "line, and (by default) print out those lines which\n"
+	   "contain pattern as a substring.\n"
+	   "\n"
+	   "  -v, --invert-match     print non-matching lines\n"
+	   "  -n, --line-number      print line numbers with output\n"
+	   "  -q, --quiet            suppress all output\n"
+	   "\n"
+	   "Exit status is 0 if any line is selected, 1 otherwise;\n"
+	   "if any error occurs, then the exit status is 2.\n"
+	   "\n"
+	   );
+}
+
+int main(int argc, char * * argv)
+{
+	int linum_mode = FALSE;
+	int invert_match = FALSE;
+	int show_help = FALSE;
+	int quiet_mode = FALSE;
+	const char * pattern = argv[argc - 1];
+
+	int i;
+	for(i = 1; i < argc - 1; ++i) {
+		#define ARG_IS(S) (strcmp(argv[i], S) == 0)
+		if(ARG_IS("--help")) show_help = TRUE;
+		else if(ARG_IS("-n")) linum_mode = TRUE;
+		else if(ARG_IS("--line-number")) linum_mode = TRUE;
+		else if(ARG_IS("-v")) invert_match = TRUE;
+		else if(ARG_IS("--invert-match")) invert_match = TRUE;
+		else if(ARG_IS("-q")) quiet_mode = TRUE;
+		else if(ARG_IS("--quiet")) quiet_mode = TRUE;
+		else {
+			fprintf(stderr, "Bad switch: %s\n", argv[i]);
+			return EXIT_ERROR;
+		}
+		#undef ARG_IS
+	}
+	if(show_help || strcmp(pattern, "--help") == 0) {
+		printHelpMessage();
+		return EXIT_SUCCESS;
+	}
+	if(argc == 1) {
+		fprintf(stderr, "No pattern supplied\n");
+		return EXIT_ERROR;
+	}
+	if(pattern[0] == '-') {
+		fprintf(stderr, "Pattern cannot begin with '-'");
+		return EXIT_ERROR;
+	}
+	int linum = 0;
+	int match_count = 0;
+	char buffer[BUFFER_SIZE];
+	while(fgets(buffer, BUFFER_SIZE, stdin)) {
+		++linum;
+		int match = strstr(buffer, pattern) ? TRUE : FALSE;
+		if(match != invert_match) {
+			++match_count;
+			if(!quiet_mode) {
+				if(linum_mode)
+					printf("%d: ", linum);
+				printf("%s", buffer);
+				if(strlen(buffer) > 0 && buffer[strlen(buffer) - 1] != '\n')
+					printf("\n");
+			}
+		}
+	}
+	return count > 0 ? 0 : 1;
+}
