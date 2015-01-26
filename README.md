@@ -16,8 +16,6 @@ https://github.com/yunghsianglu/ECE264Assignments/tree/master/Spring2014
 
 PA05-ImageNormalization.c
 
-PA06-IntegerPartitioning-Recursion.c
-
 PA07-MergeSort.c
 
 PA08-RecursionInTrees.c
