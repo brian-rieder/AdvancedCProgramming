@@ -1,3 +1,6 @@
+// Author: Brian Rieder
+// Title: PA02-StringOperations-StringLibFcns.c
+
 #include <stdio.h>
 #include <stdlib.h>
 
