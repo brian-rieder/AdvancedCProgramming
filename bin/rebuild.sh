@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Usage: ./rebuild.sh source1.c source2.c ... sourceN.c
+
 source_files=$*
 
 rehash()
